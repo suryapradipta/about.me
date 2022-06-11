@@ -8,9 +8,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surya Pradipta's Profile</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+
+
+    <!-- icon pack -->
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+    <!-- tweenmax (greensock) cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+
+    <!-- for on scroll animations -->
+    <link rel="stylesheet" href="animate.css">
+    <script src="wow.min.js"></script>
 </head>
 
 <body>
+<!-- NAVIGATION SECTION STARTS -->
+
+<div class="nav">
+    <div class="menu-open">
+        <ion-icon name="menu"></ion-icon>
+    </div>
+    <div class="section">
+        <span><a href="index.html">Profile</a></span>
+    </div>
+    <div class="menu">
+        <div class="menu-close">
+            <ion-icon name="close"></ion-icon>
+        </div>
+        <ul>
+            <li><a href="index.html">Profile</a></li>
+            <li><a href="">Coming Soon</a></li>
+            <li><a href="">Coming Soon</a></li>
+            <li><a href="">Coming Soon</a></li>
+            <li><a href="">Coming Soon</a></li>
+            <li><a href="">Coming Soon</a></li>
+        </ul>
+        <div class="media-menu">
+            <ul>
+                <li><ion-icon name="logo-instagram"></ion-icon></li>
+                <li><ion-icon name="logo-github"></ion-icon></li>
+                <li><ion-icon name="logo-youtube"></ion-icon></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- NAVIGATION SECTION ENDS -->
+
 <!-- CONTENT-WRAP STARTS-->
 <div class="content-wrap">
 
@@ -162,8 +209,29 @@
             setTimeout(typing, 80);
         }
     }
-
     typing();
+
+    //Toggle MENU
+
+    var t1 = new TimelineMax({paused: true});
+    t1.to(".menu", 0.5, {
+        left: "0%",
+        ease: Power2.easeInOut
+    });
+
+    t1.reverse();
+    $(document).on("click", ".menu-open", function() {
+        t1.reversed(!t1.reversed());
+    });
+    $(document).on("click", ".menu-close", function() {
+        t1.reversed(!t1.reversed());
+    });
+
+    //Scroll activated background change
+    $(document).scroll(function() {
+        var $nav = $(".nav");
+        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+    });
 </script>
 </body>
 </html>
